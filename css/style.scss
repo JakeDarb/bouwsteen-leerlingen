@@ -1,5 +1,9 @@
 @import 'colors';
 @import 'screen-sizes';
+@import 'menu';
+@import 'character';
+@import 'navigation';
+@import 'list';
 *{
     padding: 0;
     margin: 0;
@@ -8,200 +12,67 @@
 html{
     background-color: $background;
 }
-.desktop{
-    display: none;
-}
-.menu{
-    height: 15vh;
-    width: 100%;
-    display: flex;
-    .coin{
-        display: flex;
-        align-items: center;
-        color: $neutral-dark;
-        img{
-            height: 100%;
-            width: auto;
-        }
-        .coin--amount{
-            font-size: 2em;
-            margin-left: .2em;
-        }
-    }
-    .logout{
-        display: flex;
-        align-items: center;
-        justify-content: end;
-        img{
-            height: 100%;
-            width: auto;
-        }
-    }
-    .menu--item{
-        flex: 1;
-        margin: 1em;
-    }
-}
+
 main{
     display: block;
     height: 85vh;
-    .character{
-        height: 100%;
-        width: auto;
-
-        &-alignment{
-            display: flex;
-            justify-content: center;
-            img{
-                height: 100%;
-                width: auto;
-            }
-        }
-        &--pedestal{
-            position: relative;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-        &-clothes{
-            position:absolute;
-            width: 100%;
-            height: 100%;
-        }
-        &--hair{
-            z-index: 8;
-        }
-        .character--face{
-            z-index: 7;
-        }
-        .character--neck{
-            z-index: 6;
-        }
-        .character--shirt{
-            z-index: 5;
-        }
-        .character--arms{
-            z-index: 4;
-        }
-        .character--legs{
-            z-index: 2;
-        }
-        .character--pants{
-            z-index: 3;
-        }
-        .character--shoes{
-            z-index: 4;
-        }
-    }
-    .nav--main{
-        .nav{
-            height: 10vh;
-            width: 100%;
-            display: flex;
-            bottom: 0;
-            position: absolute;
-            .nav--item{
-                flex: 1;
-                background-color: $yellow;
-                border-radius: 30px 30px 0 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border: 5px solid $yellow-secondary;
-                border-bottom: 0;
-                z-index: 9000;
-                img{
-                    height: 100%;
-                    width: auto;
-                }
-            }
-        }
-    }
-}
-
-@media (min-width: $laptop){
-    .desktop{
-        display: block;
-    }
-    main{
+    padding-right: 1rem;
+    @media (min-width: $laptop){
         display: flex;
         flex-direction: row;
-        height: 85vh;
-        .main--item{
-            flex: 1;
-        }
-        .nav--main{
-            flex: .8;
-            height: 100%;
-            padding-right: 1em;
-            padding-bottom: 1.8em;
-            .nav{
-                position: relative;
-                height: 10%;
-                height: 10vh;
-                .nav--item{
-                    transform: translateY(40%);
-                    background-color: $yellow-dark;
-                    z-index: 1;
-                    transition: all .25s;
-                    &:hover{
-                        transform: translateY(0%);
-                    }
-                }
-                .active{
-                    background-color: $yellow;
-                    transform: translateY(0);
-                    border-bottom: 0;
-                    position: relative;
-                    z-index: 9002;
-                    &:after {
-                        content:'';
-                        position: absolute;
-                        height: 5px;
-                        width: 100%;
-                        background-color: $yellow;
-                        left: 0;
-                        bottom: -5px;
-                    }
-                }
-            }
-            .list{
-                height: 90%;
-                background-color: $yellow;
-                border: 5px solid $yellow-secondary;
-                z-index: 9001;
-                position: relative;
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-                gap: 1em;
-                padding: 1em;
-                overflow-y: scroll;
-                grid-auto-rows: minmax(min-content, max-content);
-                .list--item{
-                    background-color: $neutral-light;
-                    position: relative;
-                    width: 100%;
-                    border-radius: 20px;
-                    // Makes div square
-                    ::before{
-                        content: "";
-                        float: left;
-                        padding-top: 100%; 
-                    }
-                    // ----------------
-                    .list--item-content{
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        img{
-                            width: 100%;
-                        }
-                    }
-                }
-                .list--item-selected{
-                    border: 5px solid $green;
-                }
-            }
-        }
+        flex: .8;
+        height: 100%;
     }
+    .main--item{
+        flex: 1;
+    }
+
+        
+        // .nav--main .nav__open{
+        //     bottom: 50vh;
+        // }
+    
+        // .nav--main .list__open{
+        //     // FIX OP DESKTOP
+        //     display: block;
+        //     height: 50vh;
+        //     width: 100%;
+        //     position: absolute;
+        //     bottom: 0;
+        // }
+
+        // .list__open{
+        //     background-color: $yellow;
+        //     border: 5px solid $yellow-secondary;
+        //     z-index: 9001;
+        //     display: grid;
+        //     overflow-x: scroll;
+        //     grid-auto-flow: column;
+        //     grid-template-rows: auto auto;
+        //     gap: 2rem;
+        //     padding: 2rem;
+        //     align-items: center;
+        //     .list--item{
+        //         /*height: 50%;
+        //         width: 50%;*/
+        //         width: 100px;
+        //         height: 100px;
+                
+        //         background-color: $neutral-light;
+        //         display: block;
+        //         // Makes div square
+        //         ::before{
+        //             content: "";
+        //             float: left;
+        //             padding-top: 100%; 
+        //         }
+        //         // ----------------
+        //         img{
+        //             width: 100%;
+        //         }
+        //     }
+        // }
+
+        
+        
 }
