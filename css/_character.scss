@@ -1,52 +1,52 @@
-.character{
-    height: 100%;
-    width: auto;
-    max-height: 85vh;
+.character {
+	height: 100%;
+	max-height: 85vh;
+	width: auto;
 
-    @media (min-width: $laptop){
-        height: auto;
-    }
-    &-alignment{
-        display: flex;
-        justify-content: center;
-        img{
-            height: 100%;
-            width: auto;
-        }
-    }
-    &--pedestal{
-        position: relative;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-    }
-    &-clothes{
-        position:absolute;
-        width: 100%;
-        height: 100%;
-    }
-    &--hair{
-        z-index: 8;
-    }
-    &--face{
-        z-index: 7;
-    }
-    &--neck{
-        z-index: 6;
-    }
-    &--shirt{
-        z-index: 5;
-    }
-    &--arms{
-        z-index: 4;
-    }
-    &--legs{
-        z-index: 2;
-    }
-    &--pants{
-        z-index: 3;
-    }
-    &--shoes{
-        z-index: 4;
-    }
+	@media (min-width: $laptop) {
+		height: auto;
+	}
+	&-alignment {
+		display: flex;
+		justify-content: center;
+		img {
+			height: 100%;
+			width: auto;
+		}
+	}
+	&--pedestal {
+		height: 100%;
+		position: relative;
+		width: 100%;
+		z-index: 1;
+	}
+	&-clothes {
+		height: 100%;
+		position: absolute;
+		width: 100%;
+	}
+	&--hair {
+		z-index: 8;
+	}
+	&--face {
+		z-index: 7;
+	}
+	&--neck {
+		z-index: 6;
+	}
+	&--shirt {
+		z-index: 5;
+	}
+	&--arms {
+		z-index: 4;
+	}
+	&--legs {
+		z-index: 2;
+	}
+	&--pants {
+		z-index: 3;
+	}
+	&--shoes {
+		z-index: 4;
+	}
 }

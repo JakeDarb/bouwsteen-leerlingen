@@ -1,25 +1,9 @@
-var url = new URL(window.location.href);
-var page = url.searchParams.get("p");
-var currenTab = document.querySelector('[data-page='+page+']');
-currenTab.classList.add("active");
-
-var navItems = document.querySelectorAll(".nav--item");
-var list = document.querySelector(".list");
-var nav = document.querySelector(".nav");
-
-
-navItems.forEach(item => {
+var listItems = document.querySelectorAll(".list--item");
+console.log(listItems);
+listItems.forEach(item => {
     item.addEventListener('click', e => {
-        //e.preventDefault();
-        var currentActive = document.querySelector(".active");
-        currentActive.classList.remove("active");
-        item.classList.add("active");
-        //console.log(item.dataset.page);
-        toggleMenu(currentActive.dataset.page, item);
-
         const url = new URL(window.location.href);
-        url.searchParams.set('p', item.dataset.page);
-        url.searchParams.delete('c');
+        url.searchParams.set('c', item.dataset.category);
         window.history.replaceState(null, null, url);
         setTimeout(function(){
             window.location.reload();

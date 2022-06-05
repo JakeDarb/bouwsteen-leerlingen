@@ -4,75 +4,26 @@
 @import 'character';
 @import 'navigation';
 @import 'list';
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
-html{
-    background-color: $background;
+html {
+	background-color: $background;
 }
 
-main{
-    display: block;
-    height: 85vh;
-    padding-right: 1rem;
-    @media (min-width: $laptop){
-        display: flex;
-        flex-direction: row;
-        flex: .8;
-        height: 100%;
-    }
-    .main--item{
-        flex: 1;
-    }
-
-        
-        // .nav--main .nav__open{
-        //     bottom: 50vh;
-        // }
-    
-        // .nav--main .list__open{
-        //     // FIX OP DESKTOP
-        //     display: block;
-        //     height: 50vh;
-        //     width: 100%;
-        //     position: absolute;
-        //     bottom: 0;
-        // }
-
-        // .list__open{
-        //     background-color: $yellow;
-        //     border: 5px solid $yellow-secondary;
-        //     z-index: 9001;
-        //     display: grid;
-        //     overflow-x: scroll;
-        //     grid-auto-flow: column;
-        //     grid-template-rows: auto auto;
-        //     gap: 2rem;
-        //     padding: 2rem;
-        //     align-items: center;
-        //     .list--item{
-        //         /*height: 50%;
-        //         width: 50%;*/
-        //         width: 100px;
-        //         height: 100px;
-                
-        //         background-color: $neutral-light;
-        //         display: block;
-        //         // Makes div square
-        //         ::before{
-        //             content: "";
-        //             float: left;
-        //             padding-top: 100%; 
-        //         }
-        //         // ----------------
-        //         img{
-        //             width: 100%;
-        //         }
-        //     }
-        // }
-
-        
-        
+main {
+	display: block;
+	height: 85vh;
+	padding-right: 1rem;
+	@media (min-width: $laptop) {
+		display: flex;
+		flex: .8;
+		flex-direction: row;
+		height: 100%;
+	}
+	.main--item {
+		flex: 1;
+	}
 }
