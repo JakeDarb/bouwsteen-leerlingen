@@ -69,7 +69,27 @@
                             </div>
                         </a>
                         <?php endforeach; ?>
+                    
+                    <!-- SHOP HANDLER -->
+                    <?php elseif($_GET["p"]=="shop"&&isset($_GET["c"])): ?>
+                        <?php $shopItems = Inventory::get_shopItems($_GET["c"], $_SESSION["studentId"]); ?>
+                        <a href="" class="list--item list--item-selected">
+                            <div class="list--item-content">
+                                <img src="" alt="nothing">
+                            </div>
+                        </a>
+                        <?php if($shopItems): ?>
+                            <?php foreach($shopItems as $shopItem): ?>
+                                <a href="" class="list--item" data-item="<?php echo $shopItem["id"] ?>">
+                                    <div class="list--item-content">
+                                        <img src="<?php echo $shopItem["thumbnail"] ?>" alt="<?php echo $shopItem["name"] ?>">
+                                    </div>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     <?php endif; ?>
+
+
                 <?php else: ?>
                 
                 <?php endif; ?>

@@ -21,8 +21,8 @@ class Student{
         if(password_verify($password, $hash)){
             // login
             session_start();
-            $_SESSION["user"] = $user['username'];
-            $_SESSION["userId"] = $user['studentId'];
+            $_SESSION["student"] = $user['username'];
+            $_SESSION["studentId"] = $user['studentId'];
             header("Location: index.php?p=wardrobe");
         }else{
             throw new Exception('Verkeerd wachtwoord');

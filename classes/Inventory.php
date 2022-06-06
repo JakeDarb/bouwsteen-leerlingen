@@ -13,4 +13,22 @@ class Inventory{
         //$allCategories = array();
         return $categories;
     }
+    public static function get_shopItems($accessories_type, $studentId){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT accessories.id, accessories.name, accessories.path, accessories.thumbnail
+        FROM accessories
+        INNER JOIN accessories_type ON accessories.accessories_type_id = accessories_type.id
+        WHERE accessories_type.name = :accessories_type
+        AND NOT EXISTS(
+        SELECT *
+        FROM students_accessories
+        JOIN accessories
+        ON students_accessories.accessories_id = accessories.id
+        WHERE students_accessories.students_id = :studentId)");
+        $statement->bindValue(":accessories_type", $accessories_type);
+        $statement->bindValue(":studentId", $studentId);
+        $statement->execute();
+        $shopItems = $statement->fetchAll();
+        return $shopItems;
+    }
 }
