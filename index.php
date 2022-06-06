@@ -87,8 +87,25 @@
                                 </a>
                             <?php endforeach; ?>
                         <?php endif; ?>
+                    
+                    <!-- WARDROBE HANDLER -->
+                    <?php elseif($_GET["p"]=="wardrobe"&&isset($_GET["c"])): ?>
+                        <?php $wardrobeItems = Inventory::get_wardrobeItems($_SESSION["studentId"], $_GET["c"]); ?>
+                        <a href="" class="list--item">
+                            <div class="list--item-content">
+                                <img src="" alt="nothing">
+                            </div>
+                        </a>
+                        <?php if($wardrobeItems): ?>
+                            <?php foreach($wardrobeItems as $wardrobeItem): ?>
+                                <a href="" class="list--item <?php if($wardrobeItem["is_wearing"]){echo "list--item-selected";} ?>" data-item="<?php echo $wardrobeItem["id"] ?>">
+                                    <div class="list--item-content">
+                                        <img src="<?php echo $wardrobeItem["thumbnail"] ?>" alt="<?php echo $wardrobeItem["name"] ?>">
+                                    </div>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     <?php endif; ?>
-
 
                 <?php else: ?>
                 

@@ -31,4 +31,18 @@ class Inventory{
         $shopItems = $statement->fetchAll();
         return $shopItems;
     }
+    public static function get_wardrobeItems($studentId, $accessories_type){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT accessories.id, accessories.name, accessories.path, accessories.thumbnail, students_accessories.is_wearing
+        FROM students_accessories
+        INNER JOIN accessories ON students_accessories.accessories_id = accessories.id
+        INNER JOIN accessories_type on accessories.accessories_type_id = accessories_type.id
+        WHERE students_accessories.students_id=:studentId
+        AND accessories_type.name = :accessories_type");
+        $statement->bindValue(":studentId", $studentId);
+        $statement->bindValue(":accessories_type", $accessories_type);
+        $statement->execute();
+        $wardrobeItems = $statement->fetchAll();
+        return $wardrobeItems;
+    }
 }
