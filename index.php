@@ -1,3 +1,8 @@
+<?php
+    include_once(__DIR__ . "/classes/Inventory.php");
+    include_once(__DIR__ . "/includes/checkSession.php");
+    $categories = Inventory::get_categories();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +13,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <?php
-        include_once(__DIR__ . "/classes/Inventory.php");
-        $categories = Inventory::get_categories();
-    ?>
     <header class="menu">
         <div class="coin menu--item">
             <img src="images/munt.png" alt="coin icon" class="coin--icon">
