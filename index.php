@@ -18,7 +18,7 @@
             <img src="images/munt.png" alt="coin icon" class="coin--icon">
             <span class="coin--amount">50</span>
         </div>
-        <a href="#" class="menu--item logout">
+        <a href="./login.php" class="menu--item logout">
             <img src="images/logout.svg" alt="logout">
         </a> 
     </header>
