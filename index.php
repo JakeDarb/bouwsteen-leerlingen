@@ -97,6 +97,7 @@
                                 <a href="" class="list--item list--item-shop" data-name="<?php echo $shopItem["name"] ?>" data-price="<?php echo $shopItem["price"] ?>" data-item="<?php echo $shopItem["id"] ?>" data-path="<?php echo $shopItem["path"] ?>">
                                     <div class="list--item-content">
                                         <img src="<?php echo $shopItem["thumbnail"] ?>" alt="<?php echo $shopItem["name"] ?>">
+                                        <span class="list--item-shop-price"><?php echo $shopItem["price"] ?></span>
                                     </div>
                                 </a>
                             <?php endforeach; ?>

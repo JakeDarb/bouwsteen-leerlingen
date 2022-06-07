@@ -11,19 +11,17 @@ const itemPrice = document.querySelector(".item-price");
 let studentWallet = document.querySelector(".coin--amount");
 let studentWalletAmount;
 
+// SHOP ------------------------------------------------
 shopItems.forEach(shopItem => {
     shopItem.addEventListener('click', e => {
         e.preventDefault();
-        const url = new URL(window.location.href);
+        shopCategory = getPageCategory();
         // Show item on character
-        let shopCategory = url.searchParams.get('c');
-        let targetDivClass = ".character--"+shopCategory;
-        let targetDiv = document.querySelector(targetDivClass);
-        targetDiv.innerHTML = '<img src="'+shopItem.dataset.path+'" alt="character '+shopCategory+'"></img>';
+        showClothingOnCharacter(shopCategory, shopItem);
         // Show buy button
         buyButton.style.display = "block";
         // Show select border
-        shopItem.classList.add("list--item-selected");
+        selectListItem(shopItem);
         selectedItem = shopItem;
     })
 })
@@ -65,3 +63,18 @@ btnBuyAccept.addEventListener('click', (e) => {
         console.error('Error:', error);
     });
 })
+// SHOP ------------------------------------------------
+
+function getPageCategory(){
+    const url = new URL(window.location.href);
+    let shopCategory = url.searchParams.get('c');
+    return shopCategory;
+}
+function showClothingOnCharacter(category, item){
+    let targetDivClass = ".character--"+category;
+    let targetDiv = document.querySelector(targetDivClass);
+    targetDiv.innerHTML = '<img src="'+item.dataset.path+'" alt="character '+category+'"></img>';
+}
+function selectListItem(item){
+    item.classList.add("list--item-selected");
+}
