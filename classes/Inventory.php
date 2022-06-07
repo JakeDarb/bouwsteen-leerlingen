@@ -15,16 +15,15 @@ class Inventory{
     }
     public static function get_shopItems($accessories_type, $studentId){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT accessories.id, accessories.name, accessories.path, accessories.thumbnail, accessories.price
+        $statement = $conn->prepare("SELECT * 
         FROM accessories
         INNER JOIN accessories_type ON accessories.accessories_type_id = accessories_type.id
         WHERE accessories_type.name = :accessories_type
-        AND NOT EXISTS(
-        SELECT *
-        FROM students_accessories
-        JOIN accessories
-        ON students_accessories.accessories_id = accessories.id
-        WHERE students_accessories.students_id = :studentId)");
+        AND accessories.id NOT IN (
+          SELECT students_accessories.accessories_id
+          FROM students_accessories
+          WHERE students_accessories.students_id = :studentId
+        )");
         $statement->bindValue(":accessories_type", $accessories_type);
         $statement->bindValue(":studentId", $studentId);
         $statement->execute();

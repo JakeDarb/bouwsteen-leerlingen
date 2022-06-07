@@ -106,14 +106,14 @@
                     <!-- WARDROBE HANDLER -->
                     <?php elseif($_GET["p"]=="wardrobe"&&isset($_GET["c"])): ?>
                         <?php $wardrobeItems = Inventory::get_wardrobeItems($_SESSION["studentId"], $_GET["c"]); ?>
-                        <a href="" class="list--item">
+                        <a href="" class="list--item list--item-selected">
                             <div class="list--item-content">
                                 <img src="" alt="nothing">
                             </div>
                         </a>
                         <?php if($wardrobeItems): ?>
                             <?php foreach($wardrobeItems as $wardrobeItem): ?>
-                                <a href="" class="list--item <?php if($wardrobeItem["is_wearing"]){echo "list--item-selected";} ?>" data-item="<?php echo $wardrobeItem["id"] ?>">
+                                <a href="" class="list--item list--item-wardrobe <?php if($wardrobeItem["is_wearing"]){echo "list--item-selected";} ?>" data-item="<?php echo $wardrobeItem["id"] ?>" data-path="<?php echo $wardrobeItem["path"] ?>">
                                     <div class="list--item-content">
                                         <img src="<?php echo $wardrobeItem["thumbnail"] ?>" alt="<?php echo $wardrobeItem["name"] ?>">
                                     </div>

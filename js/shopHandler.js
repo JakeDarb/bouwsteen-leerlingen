@@ -1,4 +1,5 @@
 var shopItems = document.querySelectorAll(".list--item-shop");
+var wardrobeItems = document.querySelectorAll(".list--item-wardrobe");
 let selectedItem;
 const buyButton = document.querySelector(".button-buy");
 const popup = document.querySelector(".popup");
@@ -10,10 +11,23 @@ const itemName = document.querySelector(".item-name");
 const itemPrice = document.querySelector(".item-price");
 let studentWallet = document.querySelector(".coin--amount");
 let studentWalletAmount;
+let oldSelectedItem;
 
+// WARDROBE --------------------------------------------
+wardrobeItems.forEach(wardrobeItem => {
+    wardrobeItem.addEventListener('click', (e) => {
+        e.preventDefault();
+        wardrobeCategory = getPageCategory();
+        showClothingOnCharacter(wardrobeCategory, wardrobeItem);
+        oldSelectedItem = document.querySelector(".list--item-selected");
+        oldSelectedItem.classList.remove("list--item-selected");
+        selectListItem(wardrobeItem);
+    })
+})
+// WARDROBE --------------------------------------------
 // SHOP ------------------------------------------------
 shopItems.forEach(shopItem => {
-    shopItem.addEventListener('click', e => {
+    shopItem.addEventListener('click', (e) => {
         e.preventDefault();
         shopCategory = getPageCategory();
         // Show item on character
@@ -22,7 +36,6 @@ shopItems.forEach(shopItem => {
         buyButton.style.display = "block";
         // Show select border
         selectListItem(shopItem);
-        selectedItem = shopItem;
     })
 })
 buyButton.addEventListener('click', (e) => {
@@ -77,4 +90,5 @@ function showClothingOnCharacter(category, item){
 }
 function selectListItem(item){
     item.classList.add("list--item-selected");
+    selectedItem = item;
 }
