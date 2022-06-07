@@ -1,4 +1,4 @@
-var listItems = document.querySelectorAll(".list--item");
+var listItems = document.querySelectorAll(".list--item-category");
 console.log(listItems);
 listItems.forEach(item => {
     item.addEventListener('click', e => {

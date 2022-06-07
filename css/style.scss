@@ -4,6 +4,7 @@
 @import 'character';
 @import 'navigation';
 @import 'list';
+@import 'popup';
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -26,4 +27,17 @@ main {
 	.main--item {
 		flex: 1;
 	}
+}
+
+.button-buy {
+	background-color: $yellow;
+	border: 2px solid $yellow-dark;
+	border-radius: 300px;
+	bottom: 12rem;
+	color: $neutral-dark;
+	display: none;
+	padding: .5rem 3rem;
+	position: absolute;
+	text-decoration: none;
+	z-index: 1000;
 }

@@ -13,6 +13,19 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div class="popup">
+        <div class="popup-buy">
+            <p>Ben je zeker dat je <span class="item-name"></span> wil kopen?</p>
+            <div class="popup-buttons">
+                <div class="button-box">
+                    <a href="#" class="button button-decline">nee</a>
+                </div>
+                <div class="button-box">
+                    <a href="#" class="button button-accept">ja</a>
+                </div>
+            </div>
+        </div>
+    </div>      
     <header class="menu">
         <div class="coin menu--item">
             <img src="images/munt.png" alt="coin icon" class="coin--icon">
@@ -25,6 +38,7 @@
     <main>
         <div class="character main--item">
             <div class="character--pedestal character-alignment">
+                <a href="#" class="button button-buy">Kopen</a>
                 <div class="character--hair character-alignment character-clothes">
                     <img src="images/characters/body/hair/hairstyle1_brown.svg" alt="character hair">
                 </div>
@@ -34,8 +48,8 @@
                 <div class="character--neck character-alignment character-clothes">
                     <img src="images/characters/body/necks/neck1_skintone-white1.svg" alt="character hair">
                 </div>
-                <div class="character--shirt character-alignment character-clothes">
-                    <img src="images/characters/clothing/shirts/shirt1_blue.svg" alt="character hair">
+                <div class="character--shirts character-alignment character-clothes">
+                    
                 </div>
                 <div class="character--arms character-alignment character-clothes">
                     <img src="images/characters/body/arms/arms1_skintone-white1.svg" alt="character hair">
@@ -63,7 +77,7 @@
                 <?php if($_GET['p']=="wardrobe"||$_GET['p']=="shop"): ?>
                     <?php if(!isset($_GET['c'])): ?>
                         <?php foreach($categories as $category): ?>
-                        <a href="" class="list--item list--item-selected" data-category="<?php echo $category["name"] ?>">
+                        <a href="" class="list--item list--item-category" data-category="<?php echo $category["name"] ?>">
                             <div class="list--item-content">
                                 <img src="<?php echo $category["path"] ?>" alt="<?php echo $category["name"] ?>">
                             </div>
@@ -73,14 +87,14 @@
                     <!-- SHOP HANDLER -->
                     <?php elseif($_GET["p"]=="shop"&&isset($_GET["c"])): ?>
                         <?php $shopItems = Inventory::get_shopItems($_GET["c"], $_SESSION["studentId"]); ?>
-                        <a href="" class="list--item list--item-selected">
+                        <a href="" class="list--item">
                             <div class="list--item-content">
                                 <img src="" alt="nothing">
                             </div>
                         </a>
                         <?php if($shopItems): ?>
                             <?php foreach($shopItems as $shopItem): ?>
-                                <a href="" class="list--item" data-item="<?php echo $shopItem["id"] ?>">
+                                <a href="" class="list--item list--item-shop" data-item="<?php echo $shopItem["id"] ?>" data-path="<?php echo $shopItem["path"] ?>">
                                     <div class="list--item-content">
                                         <img src="<?php echo $shopItem["thumbnail"] ?>" alt="<?php echo $shopItem["name"] ?>">
                                     </div>
@@ -115,6 +129,7 @@
     </main>
     <!--<script src="js/ajax_getParameters.js"></script>-->
     <script src="js/menu.js"></script>
+    <script src="js/shopHandler.js"></script>
     <script src="js/getCategory.js"></script>
 </body>
 </html>
