@@ -106,7 +106,7 @@
                     <!-- WARDROBE HANDLER -->
                     <?php elseif($_GET["p"]=="wardrobe"&&isset($_GET["c"])): ?>
                         <?php $wardrobeItems = Inventory::get_wardrobeItems($_SESSION["studentId"], $_GET["c"]); ?>
-                        <a href="" class="list--item list--item-selected">
+                        <a href="" class="list--item">
                             <div class="list--item-content">
                                 <img src="" alt="nothing">
                             </div>

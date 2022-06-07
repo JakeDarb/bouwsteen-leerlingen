@@ -22,6 +22,23 @@ wardrobeItems.forEach(wardrobeItem => {
         oldSelectedItem = document.querySelector(".list--item-selected");
         oldSelectedItem.classList.remove("list--item-selected");
         selectListItem(wardrobeItem);
+        // Post to database
+        let formData = new FormData();
+        formData.append('page', getPageName());
+        formData.append('oldAccessoriesId', oldSelectedItem.dataset.item);
+        formData.append('accessoriesId', selectedItem.dataset.item);
+
+        fetch('ajax/shopHandler.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log('Success:', result);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     })
 })
 // WARDROBE --------------------------------------------
@@ -60,6 +77,7 @@ btnBuyAccept.addEventListener('click', (e) => {
     studentWallet.innerHTML = studentWalletAmount;
     // Post to database
     let formData = new FormData();
+    formData.append('page', getPageName());
     formData.append('studentName', student.dataset.student);
     formData.append('accessoriesId', selectedItem.dataset.item);
     formData.append('itemPrice', selectedItem.dataset.price);
@@ -78,10 +96,15 @@ btnBuyAccept.addEventListener('click', (e) => {
 })
 // SHOP ------------------------------------------------
 
+function getPageName(){
+    const url = new URL(window.location.href);
+    let page = url.searchParams.get('p');
+    return page;
+}
 function getPageCategory(){
     const url = new URL(window.location.href);
-    let shopCategory = url.searchParams.get('c');
-    return shopCategory;
+    let category = url.searchParams.get('c');
+    return category;
 }
 function showClothingOnCharacter(category, item){
     let targetDivClass = ".character--"+category;

@@ -61,4 +61,16 @@ class Inventory{
         $statement->bindValue(":studentUsername", $studentUsername);
         $statement->execute();
     }
+    public static function changeClothes($oldAccessoriesId, $accessoriesId){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("UPDATE students_accessories
+        SET is_wearing = '0' 
+        WHERE students_accessories.accessories_id = :oldAccessoriesId;
+        UPDATE students_accessories
+        SET is_wearing = '1' 
+        WHERE students_accessories.accessories_id = :accessoriesId;");
+        $statement->bindValue(":oldAccessoriesId", $oldAccessoriesId);
+        $statement->bindValue(":accessoriesId", $accessoriesId);
+        $statement->execute();
+    }
 }

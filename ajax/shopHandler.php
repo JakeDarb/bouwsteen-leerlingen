@@ -3,28 +3,51 @@
 
     if(!empty($_POST)){
         session_start();
-        try{
-            // Buy item
-            Inventory::buyItem($_POST['studentName'], $_POST['accessoriesId']);
-            // Remove points
-            Inventory::deductPoints($_POST['itemPrice'], $_POST['studentName']);
-            // Set session data
-            $_SESSION["studentWalletAmount"] -= $_POST['itemPrice'];
+        if($_POST['page'] == "wardrobe"){
+            try{
+                // Update is_wearing in database
+                Inventory::changeClothes($_POST["oldAccessoriesId"], $_POST["accessoriesId"]);
 
-            $response = [
-                'status' => 'success',
-                'body' => $data,
-                'message' => 'Reported post'
-            ];
-
-            header('Content-Type: application/json');
-            echo json_encode($response);
-        }catch (Exception $e) {
-            $response = [
-                'status' => 'Failed',
-                'body' => $e,
-                'message' => 'Something went wrong.'
-            ];
-            echo json_encode($response);
+                $response = [
+                    'status' => 'success',
+                    'body' => $data,
+                    'message' => 'Reported post'
+                ];
+    
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }catch (Exception $e) {
+                $response = [
+                    'status' => 'Failed',
+                    'body' => $e,
+                    'message' => 'Something went wrong.'
+                ];
+                echo json_encode($response);
+            }
+        }else{
+            try{
+                // Buy item
+                Inventory::buyItem($_POST['studentName'], $_POST['accessoriesId']);
+                // Remove points
+                Inventory::deductPoints($_POST['itemPrice'], $_POST['studentName']);
+                // Set session data
+                $_SESSION["studentWalletAmount"] -= $_POST['itemPrice'];
+    
+                $response = [
+                    'status' => 'success',
+                    'body' => $data,
+                    'message' => 'Reported post'
+                ];
+    
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }catch (Exception $e) {
+                $response = [
+                    'status' => 'Failed',
+                    'body' => $e,
+                    'message' => 'Something went wrong.'
+                ];
+                echo json_encode($response);
+            }
         }
     }
