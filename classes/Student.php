@@ -23,6 +23,7 @@ class Student{
             session_start();
             $_SESSION["student"] = $user['username'];
             $_SESSION["studentId"] = $user['studentId'];
+            $_SESSION["studentWalletAmount"] = $user['points'];
             header("Location: index.php?p=wardrobe");
         }else{
             throw new Exception('Verkeerd wachtwoord');

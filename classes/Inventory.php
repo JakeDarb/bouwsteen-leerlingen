@@ -15,7 +15,7 @@ class Inventory{
     }
     public static function get_shopItems($accessories_type, $studentId){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("SELECT accessories.id, accessories.name, accessories.path, accessories.thumbnail
+        $statement = $conn->prepare("SELECT accessories.id, accessories.name, accessories.path, accessories.thumbnail, accessories.price
         FROM accessories
         INNER JOIN accessories_type ON accessories.accessories_type_id = accessories_type.id
         WHERE accessories_type.name = :accessories_type
@@ -44,5 +44,22 @@ class Inventory{
         $statement->execute();
         $wardrobeItems = $statement->fetchAll();
         return $wardrobeItems;
+    }
+    public static function buyItem($studentUsername, $accessoriesId){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("INSERT INTO `students_accessories` (`id`, `is_wearing`, `students_id`, `accessories_id`)
+        VALUES (NULL, '1', (SELECT students.id FROM students WHERE students.username = :studentUsername), :accessoriesId)");
+        $statement->bindValue(":studentUsername", $studentUsername);
+        $statement->bindValue(":accessoriesId", $accessoriesId);
+        $statement->execute();
+    }
+    public static function deductPoints($itemPrice, $studentUsername){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("UPDATE students
+        SET students.points = students.points - :itemPrice
+        WHERE students.username = :studentUsername");
+        $statement->bindValue(":itemPrice", $itemPrice);
+        $statement->bindValue(":studentUsername", $studentUsername);
+        $statement->execute();
     }
 }

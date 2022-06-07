@@ -15,7 +15,7 @@
 <body>
     <div class="popup">
         <div class="popup-buy">
-            <p>Ben je zeker dat je <span class="item-name"></span> wil kopen?</p>
+            <p>Ben je zeker dat je <span class="item-name"></span> wil kopen voor <span class="item-price"></span> munten?</p>
             <div class="popup-buttons">
                 <div class="button-box">
                     <a href="#" class="button button-decline">nee</a>
@@ -29,14 +29,14 @@
     <header class="menu">
         <div class="coin menu--item">
             <img src="images/munt.png" alt="coin icon" class="coin--icon">
-            <span class="coin--amount">50</span>
+            <span class="coin--amount"><?php echo $_SESSION["studentWalletAmount"]; ?></span>
         </div>
         <a href="./login.php" class="menu--item logout">
             <img src="images/logout.svg" alt="logout">
         </a> 
     </header>
     <main>
-        <div class="character main--item">
+        <div class="character main--item" data-student="<?php echo $_SESSION["student"]; ?>">
             <div class="character--pedestal character-alignment">
                 <a href="#" class="button button-buy">Kopen</a>
                 <div class="character--hair character-alignment character-clothes">
@@ -94,7 +94,7 @@
                         </a>
                         <?php if($shopItems): ?>
                             <?php foreach($shopItems as $shopItem): ?>
-                                <a href="" class="list--item list--item-shop" data-item="<?php echo $shopItem["id"] ?>" data-path="<?php echo $shopItem["path"] ?>">
+                                <a href="" class="list--item list--item-shop" data-name="<?php echo $shopItem["name"] ?>" data-price="<?php echo $shopItem["price"] ?>" data-item="<?php echo $shopItem["id"] ?>" data-path="<?php echo $shopItem["path"] ?>">
                                     <div class="list--item-content">
                                         <img src="<?php echo $shopItem["thumbnail"] ?>" alt="<?php echo $shopItem["name"] ?>">
                                     </div>
