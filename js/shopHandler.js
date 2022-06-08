@@ -15,26 +15,60 @@ let studentWallet = document.querySelector(".coin--amount");
 let studentWalletAmount;
 let oldSelectedItem;
 
-if(getPageName()=="wardrobe" && getPageCategory()){
+if(getPageCategory()){
     if(!document.querySelector(".list--item-selected")){
         hideClothing.classList.add("list--item-selected");
     }
 }
 
+// list--item-delete
+
+// REMOVE CLOTHING -------------------------------------
+if(getPageCategory()){
+    hideClothing.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("remove");
+        changeSelection(hideClothing);
+        studentPedestal.removeChild(document.querySelector(".character--"+getPageCategory()));
+        if(getPageCategory()=="shoes"){
+            document.querySelector(".character--feet").style.display = "flex";
+        }
+        if(getPageName()=="wardrobe"){
+            // Post to database
+            let formData = new FormData();
+            formData.append('page', getPageName());
+            formData.append('accessoriesId', oldSelectedItem.dataset.item);
+            formData.append('removeClothing', 1);
+            formData.append('studentName', student.dataset.student);
+
+            fetch('ajax/shopHandler.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Success:', result);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    })
+}
+// REMOVE CLOTHING -------------------------------------
 // WARDROBE --------------------------------------------
 wardrobeItems.forEach(wardrobeItem => {
     wardrobeItem.addEventListener('click', (e) => {
         e.preventDefault();
         wardrobeCategory = getPageCategory();
         showClothingOnCharacter(wardrobeCategory, wardrobeItem);
-        oldSelectedItem = document.querySelector(".list--item-selected");
-        oldSelectedItem.classList.remove("list--item-selected");
-        selectListItem(wardrobeItem);
+        changeSelection(wardrobeItem);
         // Post to database
         let formData = new FormData();
         formData.append('page', getPageName());
         formData.append('oldAccessoriesId', oldSelectedItem.dataset.item);
         formData.append('accessoriesId', selectedItem.dataset.item);
+        formData.append('removeClothing', 0);
 
         fetch('ajax/shopHandler.php', {
             method: 'POST',
@@ -57,6 +91,7 @@ shopItems.forEach(shopItem => {
         shopCategory = getPageCategory();
         // Show item on character
         showClothingOnCharacter(shopCategory, shopItem);
+        changeSelection(shopItem);
         // Show buy button
         buyButton.style.display = "block";
         // Show select border
@@ -133,4 +168,10 @@ function showClothingOnCharacter(category, item){
 function selectListItem(item){
     item.classList.add("list--item-selected");
     selectedItem = item;
+}
+
+function changeSelection(newItem){
+    oldSelectedItem = document.querySelector(".list--item-selected");
+    oldSelectedItem.classList.remove("list--item-selected");
+    selectListItem(newItem);
 }

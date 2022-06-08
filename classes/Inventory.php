@@ -90,4 +90,16 @@ class Inventory{
         $outfitItems = $statement->fetchAll();
         return $outfitItems;
     }
+    public static function removeClothing($accessoriesId, $studentUsername){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("UPDATE students_accessories 
+        INNER JOIN students
+        SET is_wearing = '0' 
+        AND students_accessories.id = students.id
+        WHERE students_accessories.accessories_id = :accessoriesId
+        AND students.username = :studentUsername");
+        $statement->bindValue(":accessoriesId", $accessoriesId);
+        $statement->bindValue(":studentUsername", $studentUsername);
+        $statement->execute();
+    }
 }

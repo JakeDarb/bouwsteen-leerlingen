@@ -5,8 +5,13 @@
         session_start();
         if($_POST['page'] == "wardrobe"){
             try{
-                // Update is_wearing in database
-                Inventory::changeClothes($_POST["oldAccessoriesId"], $_POST["accessoriesId"]);
+                if(!$_POST["removeClothing"]){
+                    // Update is_wearing in database
+                    Inventory::changeClothes($_POST["oldAccessoriesId"], $_POST["accessoriesId"]);
+                }else{
+                    // Remove clothing in database
+                    Inventory::removeClothing($_POST["accessoriesId"], $_POST["studentName"]);
+                }
 
                 $response = [
                     'status' => 'success',

@@ -87,10 +87,8 @@
                 <div class="character--legs character-alignment character-clothes">
                     <img src="images/characters/body/legs/legs1_skintone-white1.svg" alt="character hair">
                 </div>
-                <div class="character--feet character-alignment character-clothes">
-                    <?php if(!containsItem($clothing, "shoes")): ?>
-                            <img src="images/characters/body/feet/feet1_skintone-white1.svg" alt="character hair">
-                    <?php endif; ?>
+                <div class="character--feet character-alignment character-clothes" <?php if(containsItem($clothing, "shoes")){echo 'style="display:none;"';} ?>>
+                    <img src="images/characters/body/feet/feet1_skintone-white1.svg" alt="character hair">
                 </div>
                 <img src="images/characters/extra/pedestal1.svg" alt="character pedestal">
             </div>
@@ -116,7 +114,7 @@
                     <!-- SHOP HANDLER -->
                     <?php elseif($_GET["p"]=="shop"&&isset($_GET["c"])): ?>
                         <?php $shopItems = Inventory::get_shopItems($_GET["c"], $_SESSION["studentId"]); ?>
-                        <a href="" class="list--item">
+                        <a href="" class="list--item list--item-delete">
                             <div class="list--item-content">
                                 <img src="" alt="nothing">
                             </div>
