@@ -7,6 +7,7 @@ const popupBuy = document.querySelector(".popup-buy");
 const btnBuyAccept = document.querySelector(".popup-buy .button-accept");
 const btnBuyDecline = document.querySelector(".popup-buy .button-decline");
 const student = document.querySelector(".character");
+const studentPedestal = document.querySelector(".character--pedestal");
 const itemName = document.querySelector(".item-name");
 const itemPrice = document.querySelector(".item-price");
 const hideClothing = document.querySelector(".list--item-delete");
@@ -115,8 +116,19 @@ function getPageCategory(){
 }
 function showClothingOnCharacter(category, item){
     let targetDivClass = ".character--"+category;
-    let targetDiv = document.querySelector(targetDivClass);
-    targetDiv.innerHTML = '<img src="'+item.dataset.path+'" alt="character '+category+'"></img>';
+    if(document.querySelector(targetDivClass)){
+        let targetDiv = document.querySelector(targetDivClass);
+        targetDiv.innerHTML = '<img src="'+item.dataset.path+'" alt="character '+category+'"></img>';
+    }else{
+        const div = document.createElement("div");
+        div.classList.add("character--"+category);
+        div.classList.add("character-alignment");
+        div.classList.add("character-clothes");
+        const image = document.createElement("img");
+        image.src = item.dataset.path;
+        div.appendChild(image);
+        studentPedestal.appendChild(div);
+    }
 }
 function selectListItem(item){
     item.classList.add("list--item-selected");

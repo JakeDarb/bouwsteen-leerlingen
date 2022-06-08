@@ -3,7 +3,6 @@
     include_once(__DIR__ . "/includes/checkSession.php");
     $categories = Inventory::get_categories();
     $clothing = Inventory::getOutfit($_SESSION["student"]);
-    
     function containsItem(array $arr, $key){
         for($i=0; $i<sizeof($arr); $i++){
             if($arr[$i]["name"]==$key){
@@ -49,42 +48,14 @@
         <div class="character main--item" data-student="<?php echo $_SESSION["student"]; ?>">
             <div class="character--pedestal character-alignment">
                 <a href="#" class="button button-buy">Kopen</a>
+
+                <?php foreach($clothing as $piece): ?>
+                    <div class="character--<?php echo $piece["name"]; ?> character-alignment character-clothes">
+                        <img src="<?php echo $piece["path"]; ?>" alt="character <?php echo $piece["name"]; ?>">
+                    </div>
+                <?php endforeach; ?>
                 
-                    <div class="character--hats character-alignment character-clothes">
-                        <?php for($i=0; $i<sizeof($clothing); $i++): ?>
-                            <?php if($clothing[$i]["name"]=="hats"): ?>
-                                <img src="<?php echo $clothing[$i]["path"]; ?>" alt="character <?php echo $clothing[$i]["name"]; ?>">
-                            <?php endif; ?>
-                        <?php endfor; ?>
-                    </div>
-                    <div class="character--facewear character-alignment character-clothes">
-                        <?php for($i=0; $i<sizeof($clothing); $i++): ?>
-                            <?php if($clothing[$i]["name"]=="facewear"): ?>
-                                <img src="<?php echo $clothing[$i]["path"]; ?>" alt="character <?php echo $clothing[$i]["name"]; ?>">
-                            <?php endif; ?>
-                        <?php endfor; ?>
-                    </div>
-                    <div class="character--shirts character-alignment character-clothes">
-                        <?php for($i=0; $i<sizeof($clothing); $i++): ?>
-                            <?php if($clothing[$i]["name"]=="shirts"): ?>
-                                <img src="<?php echo $clothing[$i]["path"]; ?>" alt="character <?php echo $clothing[$i]["name"]; ?>">
-                            <?php endif; ?>
-                        <?php endfor; ?>
-                    </div>
-                    <div class="character--pants character-alignment character-clothes">
-                        <?php for($i=0; $i<sizeof($clothing); $i++): ?>
-                            <?php if($clothing[$i]["name"]=="pants"): ?>
-                                <img src="<?php echo $clothing[$i]["path"]; ?>" alt="character <?php echo $clothing[$i]["name"]; ?>">
-                            <?php endif; ?>
-                        <?php endfor; ?>
-                    </div>
-                    <div class="character--shoes character-alignment character-clothes">
-                        <?php for($i=0; $i<sizeof($clothing); $i++): ?>
-                            <?php if($clothing[$i]["name"]=="shoes"): ?>
-                                <img src="<?php echo $clothing[$i]["path"]; ?>" alt="character <?php echo $clothing[$i]["name"]; ?>">
-                            <?php endif; ?>
-                        <?php endfor; ?>
-                    </div>
+                
                 
                 <div class="character--hair character-alignment character-clothes">
                     <img src="images/characters/body/hair/hairstyle1_brown.svg" alt="character hair">
