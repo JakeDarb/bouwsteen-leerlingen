@@ -108,6 +108,7 @@ function getPageCategory(){
 }
 function showClothingOnCharacter(category, item){
     let targetDivClass = ".character--"+category;
+    console.log(document.querySelector(targetDivClass));
     let targetDiv = document.querySelector(targetDivClass);
     targetDiv.innerHTML = '<img src="'+item.dataset.path+'" alt="character '+category+'"></img>';
 }

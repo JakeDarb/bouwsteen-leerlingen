@@ -89,19 +89,39 @@
   width: 100%;
 }
 
+.character--hats {
+  z-index: 13;
+}
+
+.character--facewear {
+  z-index: 12;
+}
+
+.character--shoes {
+  z-index: 11;
+}
+
+.character--shirts {
+  z-index: 10;
+}
+
+.character--pants {
+  z-index: 9;
+}
+
 .character--hair {
+  z-index: 7;
+}
+
+.character--mouths, .character--noses, .character--eyes, .character--brows {
   z-index: 8;
 }
 
 .character--face {
-  z-index: 7;
-}
-
-.character--neck {
   z-index: 6;
 }
 
-.character--shirts {
+.character--neck {
   z-index: 5;
 }
 
@@ -109,16 +129,16 @@
   z-index: 4;
 }
 
+.character--torsos {
+  z-index: 3;
+}
+
 .character--legs {
   z-index: 2;
 }
 
-.character--pants {
-  z-index: 3;
-}
-
-.character--shoes {
-  z-index: 4;
+.character--feet {
+  z-index: 1;
 }
 
 .nav {
