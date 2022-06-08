@@ -9,9 +9,16 @@ const btnBuyDecline = document.querySelector(".popup-buy .button-decline");
 const student = document.querySelector(".character");
 const itemName = document.querySelector(".item-name");
 const itemPrice = document.querySelector(".item-price");
+const hideClothing = document.querySelector(".list--item-delete");
 let studentWallet = document.querySelector(".coin--amount");
 let studentWalletAmount;
 let oldSelectedItem;
+
+if(getPageName()=="wardrobe" && getPageCategory()){
+    if(!document.querySelector(".list--item-selected")){
+        hideClothing.classList.add("list--item-selected");
+    }
+}
 
 // WARDROBE --------------------------------------------
 wardrobeItems.forEach(wardrobeItem => {
@@ -108,7 +115,6 @@ function getPageCategory(){
 }
 function showClothingOnCharacter(category, item){
     let targetDivClass = ".character--"+category;
-    console.log(document.querySelector(targetDivClass));
     let targetDiv = document.querySelector(targetDivClass);
     targetDiv.innerHTML = '<img src="'+item.dataset.path+'" alt="character '+category+'"></img>';
 }

@@ -3,6 +3,15 @@
     include_once(__DIR__ . "/includes/checkSession.php");
     $categories = Inventory::get_categories();
     $clothing = Inventory::getOutfit($_SESSION["student"]);
+    
+    function containsItem(array $arr, $key){
+        for($i=0; $i<sizeof($arr); $i++){
+            if($arr[$i]["name"]==$key){
+                return true;
+            }
+        }
+        return false;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,7 +117,9 @@
                     <img src="images/characters/body/legs/legs1_skintone-white1.svg" alt="character hair">
                 </div>
                 <div class="character--feet character-alignment character-clothes">
-                    <img src="images/characters/body/feet/feet1_skintone-white1.svg" alt="character hair">
+                    <?php if(!containsItem($clothing, "shoes")): ?>
+                            <img src="images/characters/body/feet/feet1_skintone-white1.svg" alt="character hair">
+                    <?php endif; ?>
                 </div>
                 <img src="images/characters/extra/pedestal1.svg" alt="character pedestal">
             </div>
@@ -153,14 +164,7 @@
                     <!-- WARDROBE HANDLER -->
                     <?php elseif($_GET["p"]=="wardrobe"&&isset($_GET["c"])): ?>
                         <?php $wardrobeItems = Inventory::get_wardrobeItems($_SESSION["studentId"], $_GET["c"]); ?>
-                        <a href="" class="list--item <?php if(!$clothing){
-                            echo "list--item-selected";}else{
-                                for($i=0; $i<sizeof($clothing); $i++){
-                                    if(!$clothing[$i]["name"]=="pants"){
-                                        echo "list--item-selected";
-                                    }
-                                }
-                            } ?>" data-item="0">
+                        <a href="" class="list--item list--item-delete" data-item="0">
                             <div class="list--item-content">
                                 <img src="" alt="nothing">
                             </div>
