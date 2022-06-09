@@ -1,5 +1,11 @@
-var listItems = document.querySelectorAll(".list--item-category");
-console.log(listItems);
+if(page == "tasks"){
+    var listItems = document.querySelectorAll(".list--item-assignments");
+    console.log("tasks");
+}else{
+    var listItems = document.querySelectorAll(".list--item-category");
+    console.log("something else");
+}
+
 listItems.forEach(item => {
     item.addEventListener('click', e => {
         const url = new URL(window.location.href);

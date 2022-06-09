@@ -15,7 +15,11 @@ let studentWallet = document.querySelector(".coin--amount");
 let studentWalletAmount;
 let oldSelectedItem;
 
-if(getPageCategory()){
+if(!getPageName()){
+    window.location.href=(window.location.href+"?p=wardrobe");
+}
+
+if(getPageCategory()&&getPageName()=="shop"||getPageCategory()&&getPageName()=="wardrobe"){
     if(!document.querySelector(".list--item-selected")){
         hideClothing.classList.add("list--item-selected");
     }
@@ -24,7 +28,7 @@ if(getPageCategory()){
 // list--item-delete
 
 // REMOVE CLOTHING -------------------------------------
-if(getPageCategory()){
+if(getPageCategory()&&getPageName()=="shop"||getPageCategory()&&getPageName()=="wardrobe"){
     hideClothing.addEventListener("click", (e) => {
         e.preventDefault();
         console.log("remove");

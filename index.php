@@ -94,14 +94,14 @@
             </div>
         </div>
         <div class="main--item">
-            <div class="nav nav--open">
+            <div class="nav nav--open<?php if($_GET['p']=="tasks"){ echo " nav-assignments nav-assignments--open"; } ?>">
                 <a href="" class="nav--item" data-page="wardrobe"><img src="images/wardrobe.svg" alt="wardrobe"></a>
                 <a href="" class="nav--item" data-page="shop"><img src="images/shop.svg" alt="shop"></a>
                 <a href="" class="nav--item" data-page="tasks"><img src="images/tasks.svg" alt="tasks"></a>
             </div>
             
-            <div class="list list--open">
-                <?php if($_GET['p']=="wardrobe"||$_GET['p']=="shop"): ?>
+            <?php if($_GET['p']=="wardrobe"||$_GET['p']=="shop"): ?>
+                <div class="list list--open">
                     <?php if(!isset($_GET['c'])): ?>
                         <?php foreach($categories as $category): ?>
                         <a href="" class="list--item list--item-category" data-category="<?php echo $category["name"] ?>">
@@ -149,11 +149,39 @@
                             <?php endforeach; ?>
                         <?php endif; ?>
                     <?php endif; ?>
+                </div>
+            <?php else: ?>
+                <div class="list list--open list-assignments list-assignments--open">
+                    <!-- ASSIGNMENTS HANDLER -->
+                    <?php if(!isset($_GET['c'])): ?>
+                    <a href="" class="list--item list--item-autoheight list--item-assignments list--item-assignmentsCompleted" data-category="completed">
+                        <div class="list--item-content">
+                            <p>Voltooide opdrachten</p>
+                            <span class="newCompleted">2</span>
+                        </div>
+                    </a>
 
-                <?php else: ?>
-                
-                <?php endif; ?>
-            </div>
+                    <a href="" class="list--item list--item-assignments" data-category="wiskunde">
+                        <div class="list--item-content">
+                           <span class="list--item-assignmentsTitle">wiskunde</span>
+                        </div>
+                    </a>
+                    <?php elseif($_GET['c']=="completed"): ?>
+                        <h2>Wiskunde</h2>
+                        <div class="list--item list--item-autoheight list--item-assignments list--item-assignmentsCompleted list--item-assignmentsCompletedContent">
+                            <p>Voorstellen Boek</p>
+                            <span class="list--item-assignmentsCompletedContent-reward">20</span>
+                            <a href="" class="list--item-assignmentsCompletedClaim">Ontvang</a>
+                        </div>
+                    <?php else: ?>
+                        <h2>20/02/2022</h2>
+                        <div class="list--item list--item-autoheight list--item-assignments list--item-assignmentsCompleted list--item-assignmentsCompletedContent">
+                            <p>Voorstellen Boek</p>
+                            <span class="list--item-assignmentsContent-reward">20</span>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </main>
     <!--<script src="js/ajax_getParameters.js"></script>-->
