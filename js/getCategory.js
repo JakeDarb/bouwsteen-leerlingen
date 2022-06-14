@@ -3,7 +3,6 @@ if(page == "tasks"){
     console.log("tasks");
 }else{
     var listItems = document.querySelectorAll(".list--item-category");
-    console.log("something else");
 }
 
 listItems.forEach(item => {
@@ -25,7 +24,6 @@ listItems.forEach(item => {
         */
     })
   })
-
   function toggleMenu(active, pressedItem){
    
     if(active == pressedItem.dataset.page && nav.classList.contains("nav--open")){

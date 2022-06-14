@@ -2,6 +2,8 @@
 
 include_once(__DIR__ . '/classes/User.php');
 include_once(__DIR__ . "/classes/Signup.php");
+include_once(__DIR__ . "/classes/Student.php");
+
 session_start();
 session_destroy();
 
@@ -10,7 +12,7 @@ if (!empty($_POST)) {
     try {
         $user = new Signup(null, $_POST["name"], $_POST["surname"], $_POST["username"], $_POST["password"], $_POST["classNumber"], $_POST["classId"]);
         $user->register();
-        
+        Student::insertSmiley(Student::getUserId($_POST["username"]));
     } catch (Exception $e) {
         $error = $e->getMessage();
     }
