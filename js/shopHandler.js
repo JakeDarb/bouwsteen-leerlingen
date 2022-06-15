@@ -116,12 +116,14 @@ btnBuyDecline.addEventListener('click', (e) => {
 })
 btnBuyAccept.addEventListener('click', (e) => {
     e.preventDefault;
-    popup.style.display = "none";
-    popupBuy.style.display = "none";
-    buyButton.style.display = "none";
-    selectedItem.style.display="none";
-    studentWalletAmount = parseInt(studentWallet.innerHTML)-parseInt(selectedItem.dataset.price);
-    studentWallet.innerHTML = studentWalletAmount;
+        popup.style.display = "none";
+        popupBuy.style.display = "none";
+    if(parseInt(parseInt(selectedItem.dataset.price)<=studentWallet.innerHTML)){
+        buyButton.style.display = "none";
+        selectedItem.style.display="none";
+        studentWalletAmount = parseInt(studentWallet.innerHTML)-parseInt(selectedItem.dataset.price);
+        studentWallet.innerHTML = studentWalletAmount;
+    }
     // Post to database
     let formData = new FormData();
     formData.append('page', getPageName());

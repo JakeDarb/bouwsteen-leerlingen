@@ -31,10 +31,14 @@
             }
         }else{
             try{
+                if($_POST['itemPrice']<=$_SESSION["studentWalletAmount"]){
                 // Buy item
                 Inventory::buyItem($_POST['studentName'], $_POST['accessoriesId']);
                 // Remove points
                 Inventory::deductPoints($_POST['itemPrice'], $_POST['studentName']);
+                }else{
+                    throw new Exception("Je hebt niet genoeg munten!");
+                }
                 // Set session data
                 $_SESSION["studentWalletAmount"] -= $_POST['itemPrice'];
     

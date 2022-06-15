@@ -13,12 +13,14 @@
 }
 html {
 	background-color: $background;
+	height: -webkit-fill-available;
 }
 
 main {
 	display: block;
 	height: 85vh;
 	padding-right: 1rem;
+	position: relative;
 	@media (min-width: $laptop) {
 		display: flex;
 		flex: .8;

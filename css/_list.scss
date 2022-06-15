@@ -2,7 +2,6 @@
 	background-color: $yellow;
 	border: 5px solid $yellow-secondary;
 	display: none;
-	padding: 1rem;
 	//height: 90%;
 	//max-height: 85vh;
 	position: relative;
@@ -13,6 +12,7 @@
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 		height: 72vh;
 		overflow-y: scroll;
+		padding: 1rem;
 
 		gap: 1rem;
 		grid-auto-rows: minmax(min-content, max-content);
@@ -72,6 +72,10 @@
 			}
 		}
 	}
+	.list--item-delete {
+		background-color: $red;
+		border: 5px solid $red-dark;
+	}
 
 
 	&--open {
@@ -82,7 +86,7 @@
 			height: 25vh;
 			left: 0;
 			overflow-x: scroll;
-			padding: 2rem;
+			padding: 0 2rem;
 			position: absolute;
 			width: 100%;
 
@@ -127,6 +131,10 @@
 	}
 	.list--item-assignments {
 		border-radius: 0;
+		&Square {
+			background-image: url('../images/books.png');
+			background-size: contain;
+		}
 		&Content-reward {
 			background-color: $secondary;
 			border: 2px solid $green;

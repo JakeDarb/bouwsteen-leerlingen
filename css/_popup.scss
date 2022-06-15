@@ -9,6 +9,9 @@
 	position: absolute;
 	width: 100vw;
 	z-index: 90000;
+	h2 {
+		font-family: 'Pacifico', cursive;
+	}
 	.popup-box {
 		align-items: center;
 		background-color: $yellow;
@@ -19,7 +22,10 @@
 		flex-direction: column;
 		height: 50%;
 		justify-content: center;
-		width: 50%;
+		width: 90%;
+		@media (min-width: $laptop) {
+			width: 50%;
+		}
 	}
 	.popup-descriptionContent {
 		align-self: flex-start;

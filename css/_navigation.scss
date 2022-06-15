@@ -1,3 +1,4 @@
+
 .nav {
 	bottom: 0;
 	display: flex;
@@ -14,7 +15,8 @@
 			background-color: $yellow-dark;
 		}
 	}
-	.nav--item {
+	.nav--item,
+	.nav--back {
 		align-items: center;
 		background-color: $yellow;
 		border: 5px solid $yellow-secondary;
@@ -62,10 +64,49 @@
 	}
 }
 
+.nav-back {
+	bottom: auto;
+	display: none;
+	height: 10vh;
+	position: absolute;
+	right: 2rem;
+	top: 5vh;
+	visibility: visible;
+	width: max-content;
+	z-index: 10000000;
+	&:hover {
+		transform: none;
+	}
+	.nav--back {
+		background-color: $red;
+		border: 5px solid $red-dark;
+		border-radius: 15px 15px 15px 15px;
+		@media (min-width: $laptop) {
+			transform: translateY(0);
+		}
+	}
+	&--open {
+		@media (max-width: $laptop) {
+			bottom: 20vh;
+			top: auto;
+		}
+	}
+}
+
 .nav-assignments {
 	&--open {
 		@media (max-width: $laptop) {
 			bottom: 65vh;
+			top: auto;
+		}
+	}
+}
+
+.nav-backAssignments {
+	&--open {
+		@media (max-width: $laptop) {
+			bottom: 60vh;
+			top: auto;
 		}
 	}
 }
